@@ -1,0 +1,26 @@
+//
+//
+// Created for Crafty iOS by hbq2dev
+// AuthServiceManager.swift
+//
+//  Copyright © 2025 hbq2dev.
+//
+
+import Combine
+
+protocol AuthServiceManagerProtocol {
+    func apiIndex(type: EndPointType) -> Future<Any, DataError>
+    func getToken(type: EndPointType) -> Future<Any, DataError>
+}
+
+final class AuthServiceManager: AuthServiceManagerProtocol {
+    private var apiManager = APIManager()
+
+    func apiIndex(type: EndPointType) -> Future<Any, DataError> {
+        apiManager.request(modelType: ApiIndexResponse.self, type: type)
+    }
+
+    func getToken(type: EndPointType) -> Future<Any, DataError> {
+        apiManager.request(modelType: ApiTokenResponse.self, type: type)
+    }
+}
