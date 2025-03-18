@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CustomAlertModifier.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
@@ -54,8 +53,8 @@ extension CraftyAlertModifier {
         self.message = message
         self.dismissButton = dismissButton
 
-        self.primaryButton = nil
-        self.secondaryButton = nil
+        primaryButton = nil
+        secondaryButton = nil
 
         _isPresented = isPresented
     }
@@ -72,7 +71,7 @@ extension CraftyAlertModifier {
         self.primaryButton = primaryButton
         self.secondaryButton = secondaryButton
 
-        self.dismissButton = nil
+        dismissButton = nil
 
         _isPresented = isPresented
     }

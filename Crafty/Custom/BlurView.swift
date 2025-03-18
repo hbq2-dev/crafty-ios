@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // BlurView.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Foundation
@@ -15,7 +14,7 @@ import SwiftUI
 public struct BlurView: NSViewRepresentable {
     public typealias NSViewType = NSVisualEffectView
 
-    public func makeNSView(context: Context) -> NSVisualEffectView {
+    public func makeNSView(context _: Context) -> NSVisualEffectView {
         let effectView = NSVisualEffectView()
         effectView.material = .hudWindow
         effectView.blendingMode = .withinWindow
@@ -23,7 +22,7 @@ public struct BlurView: NSViewRepresentable {
         return effectView
     }
 
-    public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+    public func updateNSView(_ nsView: NSVisualEffectView, context _: Context) {
         nsView.material = .hudWindow
         nsView.blendingMode = .withinWindow
     }
@@ -35,11 +34,11 @@ public struct BlurView: NSViewRepresentable {
 public struct BlurView: UIViewRepresentable {
     public typealias UIViewType = UIVisualEffectView
 
-    public func makeUIView(context: Context) -> UIVisualEffectView {
+    public func makeUIView(context _: Context) -> UIVisualEffectView {
         UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
     }
 
-    public func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+    public func updateUIView(_ uiView: UIVisualEffectView, context _: Context) {
         uiView.effect = UIBlurEffect(style: .systemMaterial)
     }
 }

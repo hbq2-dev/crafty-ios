@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CraftyTests.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 @testable import Crafty

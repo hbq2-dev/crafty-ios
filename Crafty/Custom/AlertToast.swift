@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // AlertToast.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -141,7 +140,7 @@ public struct AlertToast: View {
         var backgroundColor: Color? {
             switch self {
             case let .style(backgroundColor: color, _, _, _, _, _):
-                return color
+                color
             }
         }
 
@@ -149,7 +148,7 @@ public struct AlertToast: View {
         var titleColor: Color? {
             switch self {
             case let .style(_, color, _, _, _, _):
-                return color
+                color
             }
         }
 
@@ -157,7 +156,7 @@ public struct AlertToast: View {
         var subtitleColor: Color? {
             switch self {
             case let .style(_, _, color, _, _, _):
-                return color
+                color
             }
         }
 
@@ -165,7 +164,7 @@ public struct AlertToast: View {
         var titleFont: Font? {
             switch self {
             case let .style(_, _, _, titleFont: font, _, _):
-                return font
+                font
             }
         }
 
@@ -173,14 +172,14 @@ public struct AlertToast: View {
         var subTitleFont: Font? {
             switch self {
             case let .style(_, _, _, _, subTitleFont: font, _):
-                return font
+                font
             }
         }
 
         var activityIndicatorColor: Color? {
             switch self {
             case let .style(_, _, _, _, _, color):
-                return color
+                color
             }
         }
     }
@@ -196,13 +195,13 @@ public struct AlertToast: View {
     public var type: AlertType
 
     /// The title of the alert (`Optional(String)`)
-    public var title: String? = nil
+    public var title: String?
 
     /// The subtitle of the alert (`Optional(String)`)
-    public var subTitle: String? = nil
+    public var subTitle: String?
 
     /// Customize your alert appearance
-    public var style: AlertStyle? = nil
+    public var style: AlertStyle?
 
     /// Full init
     public init(
@@ -262,7 +261,7 @@ public struct AlertToast: View {
                         .font(style?.titleFont ?? Font.headline.bold())
                 }
 
-                if let subTitle = subTitle {
+                if let subTitle {
                     Text(LocalizedStringKey(subTitle))
                         .font(style?.subTitleFont ?? Font.subheadline)
                 }
@@ -306,13 +305,13 @@ public struct AlertToast: View {
 
                 if title != nil || subTitle != nil {
                     VStack(alignment: type == .regular ? .center : .leading, spacing: 2) {
-                        if let title = title {
+                        if let title {
                             Text(LocalizedStringKey(title))
                                 .font(style?.titleFont ?? Font.body.bold())
                                 .multilineTextAlignment(.center)
                                 .textColor(style?.titleColor ?? nil)
                         }
-                        if let subTitle = subTitle {
+                        if let subTitle {
                             Text(LocalizedStringKey(subTitle))
                                 .font(style?.subTitleFont ?? Font.footnote)
                                 .opacity(0.7)
@@ -372,13 +371,13 @@ public struct AlertToast: View {
             }
 
             VStack(spacing: type == .regular ? 8 : 2) {
-                if let title = title {
+                if let title {
                     Text(LocalizedStringKey(title))
                         .font(style?.titleFont ?? Font.body.bold())
                         .multilineTextAlignment(.center)
                         .textColor(style?.titleColor ?? nil)
                 }
-                if let subTitle = subTitle {
+                if let subTitle {
                     Text(LocalizedStringKey(subTitle))
                         .font(style?.subTitleFont ?? Font.footnote)
                         .opacity(0.7)
@@ -426,8 +425,8 @@ public struct AlertToastModifier: ViewModifier {
     var alert: () -> AlertToast
 
     /// Completion block returns `true` after dismiss
-    var onTap: (() -> Void)? = nil
-    var completion: (() -> Void)? = nil
+    var onTap: (() -> Void)?
+    var completion: (() -> Void)?
 
     @State
     private var workItem: DispatchWorkItem?
@@ -636,7 +635,7 @@ private struct BackgroundModifier: ViewModifier {
 
     @ViewBuilder
     func body(content: Content) -> some View {
-        if let color = color {
+        if let color {
             content
                 .background(color)
         } else {
@@ -653,7 +652,7 @@ private struct TextForegroundModifier: ViewModifier {
 
     @ViewBuilder
     func body(content: Content) -> some View {
-        if let color = color {
+        if let color {
             content
                 .foregroundColor(color)
         } else {

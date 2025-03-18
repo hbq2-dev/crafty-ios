@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // AuthEndpoint.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Foundation
@@ -17,9 +16,9 @@ extension AuthEndpoint: EndPointType {
     var path: String {
         switch self {
         case .apiIndex:
-            return ""
+            ""
         case .getToken:
-            return "/auth/login"
+            "/auth/login"
         }
     }
 
@@ -32,18 +31,18 @@ extension AuthEndpoint: EndPointType {
     var method: HTTPMethods {
         switch self {
         case .apiIndex:
-            return .get
+            .get
         case .getToken:
-            return .post
+            .post
         }
     }
 
     var body: Encodable? {
         switch self {
         case .apiIndex:
-            return nil
+            nil
         case let .getToken(model: model):
-            return model
+            model
         }
     }
 

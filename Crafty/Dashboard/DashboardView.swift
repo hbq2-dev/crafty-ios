@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // DashboardView.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
@@ -14,13 +13,14 @@ struct DashboardView: View {
     @State
     private var showSheet = false
     @State
-    private var columnVisibility = NavigationSplitViewVisibility.automatic
+    private var preferredColumn =
+        NavigationSplitViewColumn.sidebar
 
     @EnvironmentObject
     var viewModel: DashboardViewModel
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        NavigationSplitView {
             VStack(
                 alignment: .leading
             ) {
@@ -65,8 +65,9 @@ struct DashboardView: View {
                     NewServerView()
                         .presentationBackground(.thinMaterial)
                 }
-                .modifier(CustomButtonStyle(isEnabled: true)).padding(.vertical, 8)
-            }.background(.craftyBackground)
+                .modifier(CustomButtonStyle(isEnabled: true))
+                .padding(.vertical, 8)
+            }
         }
 
         detail: {
@@ -85,11 +86,11 @@ struct DashboardView: View {
             .onAppear {
                 viewModel.fetchStats()
 
-                if UIDevice.current.userInterfaceIdiom == .pad &&
-                    UIDevice.current.orientation.isPortrait
-                {
-                    columnVisibility = .all
-                }
+//                if UIDevice.current.userInterfaceIdiom == .pad &&
+//                    UIDevice.current.orientation.isPortrait
+//                {
+//                    preferredColumn = .all
+//                }
             }
     }
 }
@@ -100,7 +101,7 @@ struct DashboardView: View {
 
     struct PreviewWrapper: View {
         var body: some View {
-            CircleProgressView(progress: 0.22, lineWidth: 4)
+            // CircleProgressView(progress: 0.22, lineWidth: 4)
             DashboardView().environmentObject(DashboardViewModel(
                 statsManager: StatsServiceManager(),
                 serverManager: ServerServiceManager()

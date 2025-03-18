@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // ServersEndpoint.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Foundation
@@ -26,25 +25,25 @@ extension ServersEndpoint: EndPointType {
     var path: String {
         switch self {
         case .getServers:
-            return "/servers"
+            "/servers"
         case .postNewBedrockServer, .postNewJavaServer:
-            return "/servers"
+            "/servers"
         case let .getServerStats(serverID):
-            return "/servers/\(serverID)/stats"
+            "/servers/\(serverID)/stats"
         case let .getServerHistory(serverID):
-            return "/servers/\(serverID)/history"
+            "/servers/\(serverID)/history"
         case let .postServerAction(serverID, action):
-            return "/servers/\(serverID)/action/\(action)"
+            "/servers/\(serverID)/action/\(action)"
         case let .getServerLogs(serverID):
-            return "/servers/\(serverID)/logs"
+            "/servers/\(serverID)/logs"
         case let .postStdin(serverID, _):
-            return "/servers/\(serverID)/stdin"
+            "/servers/\(serverID)/stdin"
         case let .deleteServer(serverID):
-            return "/servers/\(serverID)"
+            "/servers/\(serverID)"
         case let .getServerBackupDetails(serverID, backupID):
-            return "/servers/\(serverID)/backups/backup/\(backupID)"
+            "/servers/\(serverID)/backups/backup/\(backupID)"
         case let .getServerBackups(serverID):
-            return "/servers/\(serverID)/backups"
+            "/servers/\(serverID)/backups"
         }
     }
 
@@ -57,11 +56,11 @@ extension ServersEndpoint: EndPointType {
     var method: HTTPMethods {
         switch self {
         case .postNewBedrockServer, .postNewJavaServer, .postServerAction, .postStdin:
-            return .post
+            .post
         case .getServers, .getServerStats, .getServerHistory, .getServerLogs, .getServerBackupDetails, .getServerBackups:
-            return .get
+            .get
         case .deleteServer:
-            return .delete
+            .delete
         }
     }
 
@@ -69,13 +68,13 @@ extension ServersEndpoint: EndPointType {
         switch self {
         case .postServerAction, .deleteServer, .getServerStats, .getServers, .getServerLogs, .getServerHistory, .getServerBackupDetails,
              .getServerBackups:
-            return nil
+            nil
         case let .postNewBedrockServer(server):
-            return server
+            server
         case let .postNewJavaServer(server):
-            return server
+            server
         case let .postStdin(_, command):
-            return command
+            command
         }
     }
 

@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // LoginView.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -22,10 +21,6 @@ struct LoginView: View {
 
     @State
     private var shouldShowServerUrl = false
-    @State
-    private var showAlert = false
-    @State
-    private var showToast = false
 
     private var isPhone: Bool = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone
 
@@ -85,7 +80,7 @@ struct LoginView: View {
                                     viewModel.fetchApiIndex()
 
                                     shouldShowServerUrl = false
-                                    showToast = true
+                                    viewModel.showAlert = true
                                 }) {
                                     Label("Save and Test Connection", systemImage: "server.rack")
                                 }.disabled(viewModel.serverUrl.isEmpty)
@@ -103,7 +98,7 @@ struct LoginView: View {
                         Spacer()
                     }.foregroundStyle(.accent)
                         .padding()
-                        .toast(isPresenting: $showToast) {
+                        .toast(isPresenting: $viewModel.showAlert) {
                             if viewModel.errorMessage == nil {
                                 AlertToast(
                                     type: .complete(.accent),

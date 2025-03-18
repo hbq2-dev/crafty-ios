@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // LoginViewModel.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -18,7 +17,7 @@ class LoginViewModel: ObservableObject {
     @Published
     var isLoading: Bool = false
     @Published
-    var errorMessage: String? = nil
+    var errorMessage: String?
     @Published
     var isLoggedIn: Bool = KeychainManager.instance.getToken(forKey: CraftyConstants.token) != nil
 
@@ -91,8 +90,8 @@ class LoginViewModel: ObservableObject {
                     } else {
                         self.errorMessage = error.localizedDescription
                     }
-                    self.showAlert = true
                     self.isLoading = false
+                    self.showAlert = true
 
                 case .finished:
                     print("Finished")

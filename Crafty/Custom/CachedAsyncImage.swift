@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CachedAsyncImage.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
@@ -22,7 +21,7 @@ struct AsyncCachedImage<ImageView: View, PlaceholderView: View>: View {
 
     // Downloaded image
     @State
-    var image: UIImage? = nil
+    var image: UIImage?
 
     init(
         url: URL?,

@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // ServerDetailsViewModel.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -18,9 +17,9 @@ enum SocketStatus {
 @MainActor
 class ServerDetailsViewModel: ObservableObject {
     @Published
-    private var webSocketConnectionTask: Task<Void, Never>? = nil
+    private var webSocketConnectionTask: Task<Void, Never>?
     @Published
-    private var connection: WebSocketConnection<WSUpdateServerDetailsResponse, String>? = nil
+    private var connection: WebSocketConnection<WSUpdateServerDetailsResponse, String>?
 
     @Published
     var selectedServer: ApiServerStatusResponseDataClass?
@@ -95,7 +94,7 @@ class ServerDetailsViewModel: ObservableObject {
 
         self.connection = connection
 
-        if let connection = connection {
+        if let connection {
             do {
                 for try await message in connection.receive() {
                     socketStatus = .connected
@@ -189,7 +188,7 @@ class ServerDetailsViewModel: ObservableObject {
                     return
                 }
 
-                self.serverBackups = backups.values.map { $0 }
+                self.serverBackups = backups.values.map(\.self)
 
                 self.isLoading = false
             })

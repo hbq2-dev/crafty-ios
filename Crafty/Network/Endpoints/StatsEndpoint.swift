@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // StatsEndpoint.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Foundation
@@ -16,7 +15,7 @@ extension StatsEndpoint: EndPointType {
     var path: String {
         switch self {
         case .getStats:
-            return "/crafty/stats"
+            "/crafty/stats"
         }
     }
 
@@ -29,14 +28,14 @@ extension StatsEndpoint: EndPointType {
     var method: HTTPMethods {
         switch self {
         case .getStats:
-            return .get
+            .get
         }
     }
 
     var body: Encodable? {
         switch self {
         case .getStats:
-            return nil
+            nil
         }
     }
 

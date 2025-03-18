@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CraftyAlertButton.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
@@ -14,8 +13,8 @@ struct CraftyAlertButton: View {
     // MARK: Public
 
     let title: LocalizedStringKey
-    var background: Color? = nil
-    var action: (() -> Void)? = nil
+    var background: Color?
+    var action: (() -> Void)?
 
     // MARK: - View
 

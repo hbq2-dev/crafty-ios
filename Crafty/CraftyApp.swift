@@ -1,15 +1,15 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CraftyApp.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
 
 struct WebSocketConnectionFactoryEnvironmentKey: EnvironmentKey {
-    static let defaultValue: WebSocketConnectionFactory = DefaultWebSocketConnectionFactory()
+    static let defaultValue: WebSocketConnectionFactory =
+        DefaultWebSocketConnectionFactory()
 }
 
 extension EnvironmentValues {
@@ -36,20 +36,18 @@ struct CraftyApp: App {
     var body: some Scene {
         WindowGroup {
             GeometryReader { proxy in
-                NavigationStack {
-                    ApplicationSwitcher()
-                }
-                .environmentObject(loginViewModel)
-                .environmentObject(dashboardViewModel)
-                .environmentObject(serverViewModel)
-                .environment(\.orientation, UIDevice.current.orientation)
-                .environment(\.screenSize, proxy.size)
+                CraftyAppView()
+                    .environmentObject(loginViewModel)
+                    .environmentObject(dashboardViewModel)
+                    .environmentObject(serverViewModel)
+                    .environment(\.orientation, UIDevice.current.orientation)
+                    .environment(\.screenSize, proxy.size)
             }
         }
     }
 }
 
-struct ApplicationSwitcher: View {
+struct CraftyAppView: View {
     @EnvironmentObject
     var vm: LoginViewModel
 

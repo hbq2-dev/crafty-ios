@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // GifImageView.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import SwiftUI
@@ -15,7 +14,7 @@ struct GifImageView: UIViewRepresentable {
         self.name = name
     }
 
-    func makeUIView(context: Context) -> WKWebView {
+    func makeUIView(context _: Context) -> WKWebView {
         let webview = WKWebView()
         let url = Bundle.main.url(forResource: name, withExtension: "gif")!
         let data = try! Data(contentsOf: url)
@@ -23,7 +22,7 @@ struct GifImageView: UIViewRepresentable {
         return webview
     }
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {
+    func updateUIView(_ uiView: WKWebView, context _: Context) {
         uiView.reload()
     }
 }

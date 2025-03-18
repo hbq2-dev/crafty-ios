@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // APIManager.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -26,11 +25,11 @@ final class APIManager {
     private var cancellables = Set<AnyCancellable>()
 
     func request<T: Codable>(
-        modelType: T.Type,
+        modelType _: T.Type,
         type: EndPointType
     ) -> ResultHandler<Any, DataError> {
         ResultHandler { [weak self] promise in
-            guard let self = self, let url = type.url else {
+            guard let self, let url = type.url else {
                 return promise(.failure(.invalidURL))
             }
 
@@ -94,19 +93,19 @@ final class APIManager {
     func errorHandler(error: Error) -> DataError {
         switch error {
         case let decodingError as DecodingError:
-            return .decoding(error: decodingError)
+            .decoding(error: decodingError)
         case let urlError as URLError:
-            return .network(error: urlError)
+            .network(error: urlError)
         case let definedError as DataError:
-            return definedError
+            definedError
         default:
-            return .unknown(error: error)
+            .unknown(error: error)
         }
     }
 }
 
 extension URLComponents {
     mutating func setQueryItems(with parameters: [String: String]) {
-        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+        queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 }

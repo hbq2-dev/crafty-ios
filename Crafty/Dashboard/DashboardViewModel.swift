@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // DashboardViewModel.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 import Combine
@@ -22,7 +21,7 @@ class DashboardViewModel: ObservableObject {
     @Published
     var isLoading: Bool = false
     @Published
-    var errorMessage: String? = nil
+    var errorMessage: String?
     @Published
     var cpuPercentage: Double? = 0
 

@@ -1,9 +1,8 @@
 //
-//
-// Created for Crafty iOS by hbq2dev
+// Created for Crafty iOS by hbq2-dev
 // CraftyServerCommands.swift
 //
-//  Copyright © 2025 hbq2dev.
+// Copyright (c) 2025 HBQ2
 //
 
 /// Available Crafty commands:
@@ -17,7 +16,7 @@ enum CraftyServerCommands {
 
 extension CraftyServerCommands {
     var command: String {
-        return switch self {
+        switch self {
         case .startServer:
             "start_server"
         case .stopServer:
