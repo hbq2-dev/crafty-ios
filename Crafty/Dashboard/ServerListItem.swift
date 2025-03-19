@@ -18,7 +18,7 @@ struct ServerListItem: View {
                 Image(systemName: "circle.fill").resizable().foregroundColor(.red).frame(width: 8.0, height: 8.0)
             }
 
-            let icon = serverDetails?.icon ?? ""
+            let icon = serverDetails?.icon?.stringValue ?? ""
             if let data = Data(base64Encoded: icon, options: .ignoreUnknownCharacters) {
                 let image = UIImage(data: data)
 
@@ -65,11 +65,8 @@ struct ServerListItem: View {
                 Text(serverDetails?.details?.serverName ?? "")
                     .font(.callout)
 
-                if serverDetails?.version != "False" {
-                    Text("Version: \(serverDetails?.version ?? "")").font(.caption)
-
-                    Text("\(serverDetails?.details?.serverIP ?? ""):\(String(serverDetails?.details?.serverPort ?? 0))").font(.caption)
-                }
+                Text("Version: \(serverDetails?.version?.stringValue ?? "N/A")").font(.caption)
+                Text("\(serverDetails?.details?.serverIP ?? ""):\(String(serverDetails?.details?.serverPort ?? 0))").font(.caption)
             }
         }
     }

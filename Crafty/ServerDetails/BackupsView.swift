@@ -12,9 +12,7 @@ struct BackupsView: View {
     var viewModel: ServerDetailsViewModel
 
     var body: some View {
-        VStack(
-            alignment: .center
-        ) {
+        VStack {
             List(viewModel.serverBackups, id: \.self) { backup in
                 VStack(
                     alignment: .leading
@@ -33,7 +31,8 @@ struct BackupsView: View {
                     Text("Max Backups: \(backup.maxBackups)")
                 }
             }
-        }.onAppear {
+        }
+        .onAppear {
             viewModel.fetchBackups()
         }
     }

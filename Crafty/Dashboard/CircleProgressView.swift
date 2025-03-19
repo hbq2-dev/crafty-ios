@@ -21,14 +21,25 @@ struct CircleProgressView: View {
             Circle()
                 .trim(from: 0, to: min(progress, 1.0))
                 .stroke(
-                    .green.gradient,
-                    style: StrokeStyle(
-                        lineWidth: lineWidth,
-                        lineCap: .round
-                    )
+                    AngularGradient(
+                        gradient: Gradient(colors: [.green, .yellow, .orange, .red]),
+                        center: .center,
+                        startAngle: .zero,
+                        endAngle: .degrees(360)
+                    ),
+                    lineWidth: lineWidth
                 )
                 .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 0.25), value: progress)
+                .animation(.easeOut(duration: 0.5), value: progress)
         }
     }
+}
+
+#Preview {
+    struct PreviewWrapper: View {
+        var body: some View {
+            CircleProgressView(progress: 0.22, lineWidth: 5)
+        }
+    }
+    return PreviewWrapper()
 }

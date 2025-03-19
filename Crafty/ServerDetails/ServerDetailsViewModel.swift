@@ -106,7 +106,8 @@ class ServerDetailsViewModel: ObservableObject {
                         let newItem = ApiServerHistoryResponseDataClass(
                             id: (maxId ?? 0) + 1,
                             created: formattedDate(), cpu: message.data.cpu, memPercent: message
-                                .data.memPercent, online: message.data.online
+                                .data.memPercent,
+                            online: message.data.online?.integerValue ?? 0
                         )
 
                         if serverHistory.isEmpty == false {

@@ -30,7 +30,6 @@ struct TerminalView: View {
             }
             .frame(maxHeight: .infinity)
             .defaultScrollAnchor(.bottom)
-            Spacer()
             VStack {
                 Label("Enter a command - the forward slash is already included", systemImage: "apple.terminal").font(.caption)
 

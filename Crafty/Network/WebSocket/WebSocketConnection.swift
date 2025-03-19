@@ -59,24 +59,35 @@ public final class WebSocketConnection<Incoming: Decodable & Sendable, Outgoing:
                     if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String: AnyObject] {
                         print("Received message: \(json)")
 
-                        if jsonData["event"] as! String == "update_server_details" {
+                        if jsonData["event"] as? String == "update_server_details" {
+                            print(jsonData)
                             guard let message = try? decoder.decode(WSUpdateServerDetailsResponse.self, from: json) else {
                                 throw WebSocketConnectionError.decodingError
                             }
 
                             return message
-                        } else if jsonData["event"] as! String == "vterm_new_line" {
+                        } else if jsonData["event"] as? String == "update_server_status" {
+                            print("Updated Server Status")
+                        } else if jsonData["event"] as? String == "vterm_new_line" {
                             guard let message = try? decoder.decode(WSTermNewLineReponse.self, from: json) else {
                                 throw WebSocketConnectionError.decodingError
                             }
 
                             return message
-                        } else if jsonData["event"] as! String == "notification" {
+                        } else if jsonData["event"] as? String == "notification" {
                             guard let message = try? decoder.decode(WSNotificationResponse.self, from: json) else {
                                 throw WebSocketConnectionError.decodingError
                             }
 
                             return message
+                        } else if jsonData["event"] as? String == "update_host_stats" {
+                            guard let message = try? decoder.decode(WSUpdateHostStatsResponse.self, from: json) else {
+                                throw WebSocketConnectionError.decodingError
+                            }
+
+                            return message
+                        } else if jsonData["event"] as? String == "send_start_reload" {
+                            print("Send Start Reload")
                         }
                     }
                 }

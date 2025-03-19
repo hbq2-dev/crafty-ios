@@ -13,14 +13,14 @@ struct DashboardView: View {
     @State
     private var showSheet = false
     @State
-    private var preferredColumn =
-        NavigationSplitViewColumn.sidebar
+    private var columnVisibility =
+        NavigationSplitViewVisibility.doubleColumn
 
     @EnvironmentObject
     var viewModel: DashboardViewModel
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             VStack(
                 alignment: .leading
             ) {
@@ -86,11 +86,11 @@ struct DashboardView: View {
             .onAppear {
                 viewModel.fetchStats()
 
-//                if UIDevice.current.userInterfaceIdiom == .pad &&
-//                    UIDevice.current.orientation.isPortrait
-//                {
-//                    preferredColumn = .all
-//                }
+                if UIDevice.current.userInterfaceIdiom == .pad &&
+                    UIDevice.current.orientation.isPortrait
+                {
+                    columnVisibility = .doubleColumn
+                }
             }
     }
 }
@@ -101,7 +101,6 @@ struct DashboardView: View {
 
     struct PreviewWrapper: View {
         var body: some View {
-            // CircleProgressView(progress: 0.22, lineWidth: 4)
             DashboardView().environmentObject(DashboardViewModel(
                 statsManager: StatsServiceManager(),
                 serverManager: ServerServiceManager()

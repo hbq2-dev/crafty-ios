@@ -24,6 +24,8 @@ class DashboardViewModel: ObservableObject {
     var errorMessage: String?
     @Published
     var cpuPercentage: Double? = 0
+    @Published
+    var ramPercentage: Double? = 0
 
     @Published
     var onlinePlayers: Int = 0
@@ -78,6 +80,7 @@ class DashboardViewModel: ObservableObject {
                 self.isLoading = false
                 self.stats = r
                 self.cpuPercentage = r.data.cpuCurFreq / r.data.cpuMaxFreq
+                self.ramPercentage = r.data.memPercent * 0.01
 
                 self.fetchServers()
             })
@@ -135,8 +138,8 @@ class DashboardViewModel: ObservableObject {
                         return
                     }
 
-                    self.onlinePlayers = serverData.map(\.data.online).reduce(0, +)
-                    self.maxPlayers = serverData.map(\.data.max).reduce(0, +)
+//                    self.onlinePlayers = serverData.map(\.data.online).reduce(0, +)
+//                    self.maxPlayers = serverData.map(\.data.max).reduce(0, +)
 
                     self.serversStats = serverData
 

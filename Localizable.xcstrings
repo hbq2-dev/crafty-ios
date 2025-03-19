@@ -168,9 +168,6 @@
     "Max Memory" : {
 
     },
-    "Memory" : {
-
-    },
     "Memory: %lld%%" : {
 
     },
@@ -214,6 +211,9 @@
     "Privacy Policy" : {
 
     },
+    "RAM" : {
+
+    },
     "Restart" : {
 
     },
@@ -224,9 +224,6 @@
 
     },
     "Send" : {
-
-    },
-    "Server must be started to use this feature" : {
 
     },
     "Server Name" : {
@@ -293,6 +290,15 @@
 
     },
     "Version: %@" : {
+
+    },
+    "Websocket Error" : {
+
+    },
+    "Websocket: Connected" : {
+
+    },
+    "Websocket: Disconnected" : {
 
     },
     "World Size: %@" : {

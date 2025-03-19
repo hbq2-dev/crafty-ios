@@ -20,9 +20,7 @@ struct PlayersView: View {
                 HStack(
                     alignment: .center
                 ) {
-                    Spacer()
-                    Text("No players found or server is offline.")
-                    Spacer()
+                    Text("No players found or server is offline.").font(.caption).padding(32)
                 }
                 Spacer()
             } else {
