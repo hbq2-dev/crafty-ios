@@ -66,7 +66,7 @@ struct DashboardView: View {
                         .presentationBackground(.thinMaterial)
                 }
                 .modifier(CustomButtonStyle(isEnabled: true))
-                .padding(.vertical, 8)
+                .padding(.vertical, 16)
             }
         }
 
@@ -76,7 +76,20 @@ struct DashboardView: View {
             } else {
                 VStack {
                     Image(systemName: "macwindow.badge.plus")
-                    Text("Please select a server or create a new one")
+                    Text("Select a server or create a new one")
+
+                    Button(action: {
+                        showSheet.toggle()
+                    }) {
+                        Label("New Server", systemImage: "plus.circle").fontWeight(.thin)
+                    }
+                    .sheet(isPresented: $showSheet) {
+                        NewServerView()
+                            .presentationBackground(.thinMaterial)
+                    }
+                    .modifier(CustomButtonStyle(isEnabled: true))
+                    .padding(.vertical, 16)
+                    .frame(width: 250)
                 }
             }
         }.toast(isPresenting: $viewModel.isLoading) {

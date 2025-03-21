@@ -43,6 +43,6 @@ struct TerminalView: View {
                     .buttonStyle(.borderedProminent).disabled(viewModel.command.isEmpty == true)
                 }
             }
-        }.padding(16)
+        }.padding(8)
     }
 }

@@ -138,8 +138,12 @@ class DashboardViewModel: ObservableObject {
                         return
                     }
 
-//                    self.onlinePlayers = serverData.map(\.data.online).reduce(0, +)
-//                    self.maxPlayers = serverData.map(\.data.max).reduce(0, +)
+                    let onlinePlayersCount: Int = serverData.compactMap(\.data.online).compactMap(\.integerValue).reduce(0, +)
+
+                    let maxPlayersCount: Int = serverData.compactMap(\.data.max).compactMap(\.integerValue).reduce(0, +)
+
+                    self.onlinePlayers = onlinePlayersCount
+                    self.maxPlayers = maxPlayersCount
 
                     self.serversStats = serverData
 

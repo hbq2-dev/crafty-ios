@@ -63,7 +63,7 @@ struct ServerListItem: View {
 
             VStack(alignment: .leading) {
                 Text(serverDetails?.details?.serverName ?? "")
-                    .font(.callout)
+                    .font(.callout).fontWeight(.bold)
 
                 Text("Version: \(serverDetails?.version?.stringValue ?? "N/A")").font(.caption)
                 Text("\(serverDetails?.details?.serverIP ?? ""):\(String(serverDetails?.details?.serverPort ?? 0))").font(.caption)

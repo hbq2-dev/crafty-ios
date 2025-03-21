@@ -56,12 +56,12 @@
         }
       }
     },
-    "%lld Online / %lld Offline" : {
+    "%lld Online / %lld Total" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$lld Online / %2$lld Offline"
+            "value" : "%1$lld Online / %2$lld Total"
           }
         }
       }
@@ -96,10 +96,10 @@
     "Cancel" : {
 
     },
-    "Commands" : {
+    "Connect" : {
 
     },
-    "Connect" : {
+    "Connected" : {
 
     },
     "CPU" : {
@@ -124,9 +124,6 @@
 
     },
     "Delete Server" : {
-
-    },
-    "Disconnect" : {
 
     },
     "e.g. myserver.mc.com" : {
@@ -168,6 +165,9 @@
     "Max Memory" : {
 
     },
+    "Memory" : {
+
+    },
     "Memory: %lld%%" : {
 
     },
@@ -183,7 +183,13 @@
     "No players found or server is offline." : {
 
     },
+    "Offline" : {
+
+    },
     "ok" : {
+
+    },
+    "Online" : {
 
     },
     "Only HTTPS endpoints with a valid certificate are allowed" : {
@@ -205,9 +211,6 @@
         }
       }
     },
-    "Please select a server or create a new one" : {
-
-    },
     "Privacy Policy" : {
 
     },
@@ -221,6 +224,9 @@
 
     },
     "Save and Test Connection" : {
+
+    },
+    "Select a server or create a new one" : {
 
     },
     "Send" : {
@@ -250,10 +256,7 @@
     "Start" : {
 
     },
-    "Status: Offline" : {
-
-    },
-    "Status: Online" : {
+    "Status: %@" : {
 
     },
     "Stop" : {
@@ -295,7 +298,7 @@
     "Websocket Error" : {
 
     },
-    "Websocket: Connected" : {
+    "Websocket: %@" : {
 
     },
     "Websocket: Disconnected" : {

@@ -62,7 +62,7 @@ struct DashboardStatsView: View {
                 ) {
                     Label("Servers", systemImage: "server.rack").font(.subheadline).fontWeight(.semibold)
                     Text(
-                        "\(viewModel.serversStats?.filter { $0.data.running == true }.count ?? 0) Online / \(viewModel.servers?.data.count ?? 0) Offline"
+                        "\(viewModel.serversStats?.filter { $0.data.running == true }.count ?? 0) Online / \(viewModel.servers?.data.count ?? 0) Total"
                     )
                     .font(.footnote).padding(.bottom, 16)
                 }

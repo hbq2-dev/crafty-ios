@@ -14,27 +14,40 @@ struct ChartView: View {
 
     var body: some View {
         VStack {
+            HStack {
+                VStack {
+                    Text("CPU").font(.caption)
+                    Color.craftyGreen.frame(width: 50, height: 3)
+                }
+                VStack {
+                    Text("Memory").font(.caption)
+                    Color.craftyPurple.frame(width: 50, height: 3)
+                }
+                VStack {
+                    Text("Players").font(.caption)
+                    Color.craftyBlue.frame(width: 50, height: 3)
+                }
+            }
             Chart(viewModel.serverHistory) { entry in
                 LineMark(
                     x: .value("Time", entry.getTime()),
                     y: .value("Total", entry.memPercent),
                     series: .value("Metric", "Memory")
-                ).foregroundStyle(.blue).interpolationMethod(.catmullRom)
+                ).foregroundStyle(.craftyPurple).interpolationMethod(.catmullRom)
 
                 LineMark(
                     x: .value("Time", entry.getTime()),
                     y: .value("Total", entry.cpu),
                     series: .value("Metric", "CPU")
-                ).foregroundStyle(.red).interpolationMethod(.catmullRom)
+                ).foregroundStyle(.craftyGreen).interpolationMethod(.catmullRom)
 
                 BarMark(
                     x: .value("Time", entry.getTime()),
                     y: .value("Value", entry.online)
-                )
+                ).foregroundStyle(.craftyBlue).interpolationMethod(.catmullRom)
             }
             .animation(.easeInOut(duration: 0.2), value: viewModel.serverHistory)
         }.padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear {
                 viewModel.fetchHistory()
             }

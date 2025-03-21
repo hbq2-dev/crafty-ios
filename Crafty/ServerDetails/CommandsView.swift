@@ -24,10 +24,10 @@ struct CommandsView: View {
     var dismiss
 
     var body: some View {
-        VStack(
+        HStack(
             alignment: .center
         ) {
-            HStack {
+            if viewModel.selectedServer?.running ?? false == false {
                 Button(action: {
                     viewModel.serverAction(action: .startServer)
 
@@ -37,19 +37,40 @@ struct CommandsView: View {
                 }) {
                     Label("Start", systemImage: "poweron")
                 }
-                .padding(8)
-                .frame(maxWidth: .infinity)
                 .buttonStyle(.automatic)
                 .tint(.green)
                 .disabled(viewModel.selectedServer?.running ?? false == true)
 
                 Button(action: {
+                    confirmationDeleteShown = true
+                }) {
+                    Label("Delete", systemImage: "trash.circle")
+                }
+                .buttonStyle(.automatic)
+                .tint(.red)
+                .confirmationDialog("Delete Server", isPresented: $confirmationDeleteShown) {
+                    Button("Delete Server", role: .destructive) {
+                        viewModel.deleteServer()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            dismiss()
+
+                            dashboardViewModel.fetchStats()
+                        }
+                    }
+                } message: {
+                    Text(
+                        "Are you sure you want to delete this server? This action is not reversable. Please make sure you have a backup if necessary!"
+                    )
+                }
+            } else {
+                Button(action: {
                     confirmationRestartShown = true
                 }) {
-                    Label("Restart", systemImage: "togglepower")
+                    Label(UIDevice.current.userInterfaceIdiom == .pad ? "Restart" : "", systemImage: "togglepower")
                 }
-                .padding(8)
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.automatic)
+                .tint(.yellow)
                 .disabled(viewModel.selectedServer?.running ?? true == false)
                 .confirmationDialog("Restart", isPresented: $confirmationRestartShown) {
                     Button("Restart Now", role: .destructive) {
@@ -64,16 +85,12 @@ struct CommandsView: View {
                 } message: {
                     Text("Are you sure you want to restart this server?")
                 }
-            }
 
-            HStack {
                 Button(action: {
                     confirmationStopShown = true
                 }) {
-                    Label("Stop", systemImage: "poweroff")
+                    Label(UIDevice.current.userInterfaceIdiom == .pad ? "Stop" : "", systemImage: "power.circle")
                 }
-                .padding(8)
-                .frame(maxWidth: .infinity)
                 .buttonStyle(.automatic)
                 .tint(.pink)
                 .disabled(viewModel.selectedServer?.running ?? true == false)
@@ -90,31 +107,7 @@ struct CommandsView: View {
                 } message: {
                     Text("Are you sure you want to stop this server?")
                 }
-
-                Button(action: {
-                    confirmationDeleteShown = true
-                }) {
-                    Label("Delete", systemImage: "minus.circle")
-                }.padding(8)
-                    .frame(maxWidth: .infinity)
-                    .buttonStyle(.automatic)
-                    .tint(.red)
-                    .confirmationDialog("Delete Server", isPresented: $confirmationDeleteShown) {
-                        Button("Delete Server", role: .destructive) {
-                            viewModel.deleteServer()
-
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                                dismiss()
-
-                                dashboardViewModel.fetchStats()
-                            }
-                        }
-                    } message: {
-                        Text(
-                            "Are you sure you want to delete this server? This action is not reversable. Please make sure you have a backup if necessary!"
-                        )
-                    }
             }
-        }.padding(16)
+        }
     }
 }

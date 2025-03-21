@@ -14,9 +14,9 @@ struct CustomTextFieldStyle: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .padding()
+            .padding(8)
             .background(
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 8)
                     .strokeBorder(isFilled ? Color.blue : Color.gray.opacity(0.4), lineWidth: 1)
             )
     }
@@ -36,12 +36,12 @@ struct CustomButtonStyle: ViewModifier {
             .background(isEnabled ? Color.craftyBackground : Color.white.opacity(0.5))
             .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 8)
                     .stroke(isEnabled ? Color.white : Color.gray.opacity(0.4), lineWidth: 1)
             )
-            .shadow(color: isEnabled ? Color.blue.opacity(0.4) : Color.clear, radius: 10, x: 0, y: 10)
-            .padding(.horizontal, 30)
-            .animation(.easeInOut(duration: 0.2), value: isEnabled)
+            .shadow(color: isEnabled ? .craftyBlue.opacity(0.5) : Color.clear, radius: 8, x: 0, y: 8)
+            .padding(16)
+            .animation(.easeInOut(duration: 1.0), value: isEnabled)
     }
 }
 
