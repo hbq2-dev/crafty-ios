@@ -1,6 +1,7 @@
 # Crafty iOS
 Crafty Controller Native iOS App
-iOS native app for https://craftycontrol.com/
+
+https://craftycontrol.com/
 
 <img src="https://github.com/user-attachments/assets/8d95d5b5-03b5-45bc-ab45-5c0478be7220" alt="drawing" width="200"/>
 <img src="https://github.com/user-attachments/assets/14c761bb-14b2-4340-80f3-212f6c017a19" alt="drawing" width="302"/>
