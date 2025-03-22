@@ -17,6 +17,9 @@ struct SettingsView: View {
     @State
     private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
 
+    @Environment(\.dismiss)
+    var dismiss
+
     var body: some View {
         NavigationView {
             VStack {
@@ -58,6 +61,15 @@ struct SettingsView: View {
                     Text("Version: \(settingsViewModel.appVersion ?? "0")").font(.footnote)
                 }
             }
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Label("Close", systemImage: "xmark.circle").fontWeight(.thin)
+                    }
+                }
+            })
             .navigationTitle("Account")
             .onAppear {
                 if UIDevice.current.userInterfaceIdiom == .pad &&

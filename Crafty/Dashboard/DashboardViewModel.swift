@@ -105,25 +105,12 @@ class DashboardViewModel: ObservableObject {
                     socketStatus = .connected
 
                     if let message = message as? WSUpdateHostStatsResponse {
-                        print("SDf")
-                        print("message: \(message)")
-//                        selectedServer = message.data
-//
-//                        let maxId = serverHistory.map(\.id).max()
-//                        let newItem = ApiServerHistoryResponseDataClass(
-//                            id: (maxId ?? 0) + 1,
-//                            created: formattedDate(), cpu: message.data.cpu, memPercent: message
-//                                .data.memPercent,
-//                            online: message.data.online?.integerValue ?? 0
-//                        )
-//
-//                        if serverHistory.isEmpty == false {
-//                            serverHistory.remove(at: 0)
-//                            serverHistory.append(newItem)
-//                        }
+
+                        // TODO: Implement This
                     }
                     if let message = message as? WSUpdateServerStatus {
-                        print("message: \(message)")
+
+                        // TODO: Implement This
                     }
                 }
             } catch {
