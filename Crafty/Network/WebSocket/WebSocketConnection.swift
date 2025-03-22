@@ -62,12 +62,17 @@ public final class WebSocketConnection<Incoming: Decodable & Sendable, Outgoing:
                         if jsonData["event"] as? String == "update_server_details" {
                             print(jsonData)
                             guard let message = try? decoder.decode(WSUpdateServerDetailsResponse.self, from: json) else {
+
                                 throw WebSocketConnectionError.decodingError
                             }
 
                             return message
                         } else if jsonData["event"] as? String == "update_server_status" {
-                            print("Updated Server Status")
+                            guard let message = try? decoder.decode(WSUpdateServerStatus.self, from: json) else {
+                                throw WebSocketConnectionError.decodingError
+                            }
+
+                            return message
                         } else if jsonData["event"] as? String == "vterm_new_line" {
                             guard let message = try? decoder.decode(WSTermNewLineReponse.self, from: json) else {
                                 throw WebSocketConnectionError.decodingError

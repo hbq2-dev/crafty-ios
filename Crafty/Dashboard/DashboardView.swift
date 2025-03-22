@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @Environment(\.webSocketConnectionFactory)
+    private var webSocketConnectionFactory: WebSocketConnectionFactory
+
     @State
     private var selectedServer: ApiServerStatusResponseDataClass?
     @State
     private var showSheet = false
+    @State
+    private var showSettings = false
     @State
     private var columnVisibility =
         NavigationSplitViewVisibility.doubleColumn
@@ -66,7 +71,20 @@ struct DashboardView: View {
                         .presentationBackground(.thinMaterial)
                 }
                 .modifier(CustomButtonStyle(isEnabled: true))
-                .padding(.vertical, 16)
+
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        showSettings.toggle()
+                    }) {
+                        Label("Account", systemImage: "person.crop.circle").fontWeight(.thin)
+                    }
+                    .sheet(isPresented: $showSettings) {
+                        SettingsView()
+                            .presentationBackground(.thinMaterial)
+                    }
+                    Spacer()
+                }
             }
         }
 
@@ -98,6 +116,7 @@ struct DashboardView: View {
         .navigationTitle("Dashboard")
             .onAppear {
                 viewModel.fetchStats()
+                viewModel.setupWebSocket(webSocketConnectionFactory: webSocketConnectionFactory)
 
                 if UIDevice.current.userInterfaceIdiom == .pad &&
                     UIDevice.current.orientation.isPortrait

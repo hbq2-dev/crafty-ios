@@ -109,6 +109,19 @@ struct LoginView: View {
                                 AlertToast(type: .error(.red), title: "Error", subTitle: "\(viewModel.errorMessage ?? "")")
                             }
                         }
+                        .alert(
+                            "Warning",
+                            isPresented: $viewModel.showVersionWarning,
+                            presenting: viewModel.apiIndex?.data
+                        ) { _ in
+                            Button("OK") {
+                                /// NO-OP
+                            }
+                        } message: { data in
+                            Text(
+                                "This server uses API version \(data.version), but the versions support by this app are: \(viewModel.loadedConfig?.supportedServerVersions.joined(separator: ", ") ?? ""). Not all features may work as intented."
+                            )
+                        }
                         .toast(isPresenting: $viewModel.isLoading) {
                             AlertToast(type: .loading, title: "Loading", subTitle: "Please wait...")
                         }
@@ -125,6 +138,9 @@ struct LoginView: View {
                         .scaledToFill()
                         .ignoresSafeArea()
                 )
+                .onAppear {
+                    viewModel.fetchConfig()
+                }
             }
         }
     }

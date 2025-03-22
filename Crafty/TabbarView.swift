@@ -16,10 +16,10 @@ struct TabbarView: View {
                     Label("Dashboard", systemImage: "list.dash.header.rectangle")
                 }
 
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
+//            SettingsView()
+//                .tabItem {
+//                    Label("Settings", systemImage: "gear")
+//                }
         }
     }
 }

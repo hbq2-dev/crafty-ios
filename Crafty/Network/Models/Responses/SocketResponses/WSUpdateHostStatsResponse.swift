@@ -17,7 +17,8 @@ struct WSUpdateHostStatsResponse: Codable {
 // MARK: - WSUpdateHostStatsResponseDataClass
 
 struct WSUpdateHostStatsResponseDataClass: Codable {
-    let cpuUsage, cpuCores: Int
+    let cpuUsage: Double
+    let cpuCores: Int
     let cpuCurFreq: Double
     let cpuMaxFreq: Int
     let memPercent: Double

@@ -15,7 +15,7 @@ struct SettingsView: View {
     private var settingsViewModel = SettingsViewModel()
 
     @State
-    private var columnVisibility = NavigationSplitViewVisibility.automatic
+    private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
 
     var body: some View {
         NavigationView {
@@ -30,19 +30,35 @@ struct SettingsView: View {
                         }
                     }
                     Section("Links") {
-                        Link("Crafty Controller Docs", destination: URL(string: "https://docs.craftycontrol.com/")!)
-                        Link("Source Code", destination: URL(string: "https://docs.craftycontrol.com/")!)
+                        Link("Source Code", destination: URL(string: "https://github.com/hbq2-dev/crafty-ios")!)
+                        Link("Report an Issue", destination: URL(string: "https://github.com/hbq2-dev/crafty-ios/issues")!)
                     }
-                    Section("Privacy Policy") {
+                    Section {
+                        Link("Crafty Controller Documentation", destination: URL(string: "https://docs.craftycontrol.com/")!)
+                    }
+                    header: {
+                        Text("Crafty Controller")
+                    }
+                    footer: {
                         Text(
-                            "This app does not collect any personal data and does not use any analytics service.\nThe only information sent is API data to your Crafty instance, and the only third party data provider is https://mc-heads.net/avatar to receive player head information."
+                            "Please do not report any issues with this app to the Crafty team as it is not supported or developed by them."
                         )
                     }
-                }
+                    Section("Legal") {
+                        Link(
+                            "Privacy Policy",
+                            destination: URL(string: UserDefaults.standard.string(forKey: CraftyConstants.privacyPolicyUrl)!)!
+                        )
+                        Link(
+                            "Terms of Service",
+                            destination: URL(string: UserDefaults.standard.string(forKey: CraftyConstants.termsOfServiceUrl)!)!
+                        )
+                    }
 
-                Text("Version: \(settingsViewModel.appVersion ?? "0")").font(.footnote)
+                    Text("Version: \(settingsViewModel.appVersion ?? "0")").font(.footnote)
+                }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Account")
             .onAppear {
                 if UIDevice.current.userInterfaceIdiom == .pad &&
                     UIDevice.current.orientation.isPortrait

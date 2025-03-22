@@ -14,6 +14,9 @@ enum CraftyConstants {
     static let headerBearer = "Bearer"
     static let headerCookie = "Cookie"
 
+    static let privacyPolicyUrl = "privacyPolicyUrl"
+    static let termsOfServiceUrl = "termsOfServiceUrl"
+
     static let apiV2Suffix = "/api/v2"
 
     static let serverTypes = ["vanilla", "paper", "fabric", "folia", "forge-installer", "purpur"]

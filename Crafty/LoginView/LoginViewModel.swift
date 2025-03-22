@@ -32,6 +32,10 @@ class LoginViewModel: ObservableObject {
     var isSubmitAllowed: Bool = false
     @Published
     var showAlert: Bool = false
+    @Published
+    var showVersionWarning: Bool = false
+
+    var loadedConfig: ApiConfigResponse? = nil
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -62,15 +66,47 @@ class LoginViewModel: ObservableObject {
                         self.errorMessage = error.localizedDescription
                     }
                     self.isLoading = false
-
                     self.showAlert = true
 
                 case .finished:
-                    self.showAlert = true
                     self.isLoading = false
+
+                    if !self.loadedConfig!.supportedServerVersions.contains(self.apiIndex?.data.version ?? "") {
+                        self.showVersionWarning = true
+                    } else {
+                        self.showAlert = true
+                    }
                 }
             }, receiveValue: { indexResponse in
                 self.apiIndex = indexResponse as? ApiIndexResponse
+            })
+            .store(in: &cancellables)
+    }
+
+    func fetchConfig() {
+        isLoading = true
+        errorMessage = nil
+
+        serviceManager?.getConfig(type: AuthEndpoint.getConfig)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case let .failure(error):
+                    if case let DataError.network(urlError) = error {
+                        self.errorMessage = urlError?.localizedDescription
+                    } else {
+                        self.errorMessage = error.localizedDescription
+                    }
+                    self.isLoading = false
+                    self.showAlert = true
+
+                case .finished:
+                    self.isLoading = false
+                }
+            }, receiveValue: { configResponse in
+                self.loadedConfig = configResponse as? ApiConfigResponse
+
+                UserDefaults.standard.set(self.loadedConfig?.privacyPolicyUrl, forKey: CraftyConstants.privacyPolicyUrl)
+                UserDefaults.standard.set(self.loadedConfig?.termsOfServiceUrl, forKey: CraftyConstants.termsOfServiceUrl)
             })
             .store(in: &cancellables)
     }

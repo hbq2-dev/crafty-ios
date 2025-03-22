@@ -10,6 +10,7 @@ import Combine
 protocol AuthServiceManagerProtocol {
     func apiIndex(type: EndPointType) -> Future<Any, DataError>
     func getToken(type: EndPointType) -> Future<Any, DataError>
+    func getConfig(type: EndPointType) -> Future<Any, DataError>
 }
 
 final class AuthServiceManager: AuthServiceManagerProtocol {
@@ -21,5 +22,9 @@ final class AuthServiceManager: AuthServiceManagerProtocol {
 
     func getToken(type: EndPointType) -> Future<Any, DataError> {
         apiManager.request(modelType: ApiTokenResponse.self, type: type)
+    }
+
+    func getConfig(type: any EndPointType) -> Future<Any, DataError> {
+        apiManager.request(modelType: ApiConfigResponse.self, type: type)
     }
 }

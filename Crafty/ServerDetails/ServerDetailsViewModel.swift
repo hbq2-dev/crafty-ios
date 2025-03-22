@@ -20,6 +20,8 @@ class ServerDetailsViewModel: ObservableObject {
     private var webSocketConnectionTask: Task<Void, Never>?
     @Published
     private var connection: WebSocketConnection<WSUpdateServerDetailsResponse, String>?
+    @Published
+    var socketStatus: SocketStatus = .disconnected
 
     @Published
     var selectedServer: ApiServerStatusResponseDataClass?
@@ -27,8 +29,6 @@ class ServerDetailsViewModel: ObservableObject {
     var logsHtml = ""
     @Published
     var command: String = ""
-    @Published
-    var socketStatus: SocketStatus = .disconnected
     @Published
     var serverDeleted = false
     @Published
@@ -136,6 +136,10 @@ class ServerDetailsViewModel: ObservableObject {
     }
 
     func disconnect() {
+        selectedServer = nil
+        serverBackups.removeAll()
+        serverHistory.removeAll()
+
         socketStatus = .disconnected
         webSocketConnectionTask?.cancel()
     }

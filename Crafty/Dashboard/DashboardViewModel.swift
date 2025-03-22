@@ -8,7 +8,15 @@
 import Combine
 import Foundation
 
+@MainActor
 class DashboardViewModel: ObservableObject {
+    @Published
+    private var webSocketConnectionTask: Task<Void, Never>?
+    @Published
+    private var connection: WebSocketConnection<WSUpdateHostStatsResponse, String>?
+    @Published
+    var socketStatus: SocketStatus = .disconnected
+
     @Published
     var stats: ApiStatsResponse?
     @Published
@@ -54,10 +62,80 @@ class DashboardViewModel: ObservableObject {
 
     private var statsManager: StatsServiceManagerProtocol?
     private var serverManager: ServerServiceManagerProtocol?
+    private var webSocketConnectionFactory: WebSocketConnectionFactory?
 
     init(statsManager: StatsServiceManagerProtocol, serverManager: ServerServiceManagerProtocol) {
         self.statsManager = statsManager
         self.serverManager = serverManager
+    }
+
+    func setupWebSocket(webSocketConnectionFactory: WebSocketConnectionFactory?) {
+        self.webSocketConnectionFactory = webSocketConnectionFactory
+
+        webSocketConnectionTask?.cancel()
+
+        webSocketConnectionTask = Task {
+            await openAndConsumeWebSocketConnection()
+        }
+    }
+
+    func openAndConsumeWebSocketConnection() async {
+
+        guard let baseUrl = UserDefaults.standard.string(forKey: CraftyConstants.serverUrl) else {
+            return
+        }
+
+        let url =
+            URL(
+                string: "wss://\(baseUrl)/ws?page=%2Fpanel%2Fdashboard&page_query_params="
+            )!
+
+        // Close any existing WebSocketConnection
+        if let connection {
+            connection.close()
+        }
+
+        let connection: WebSocketConnection<WSUpdateHostStatsResponse, String>? = webSocketConnectionFactory?.open(at: url)
+
+        self.connection = connection
+
+        if let connection {
+            do {
+                for try await message in connection.receive() {
+                    socketStatus = .connected
+
+                    if let message = message as? WSUpdateHostStatsResponse {
+                        print("SDf")
+                        print("message: \(message)")
+//                        selectedServer = message.data
+//
+//                        let maxId = serverHistory.map(\.id).max()
+//                        let newItem = ApiServerHistoryResponseDataClass(
+//                            id: (maxId ?? 0) + 1,
+//                            created: formattedDate(), cpu: message.data.cpu, memPercent: message
+//                                .data.memPercent,
+//                            online: message.data.online?.integerValue ?? 0
+//                        )
+//
+//                        if serverHistory.isEmpty == false {
+//                            serverHistory.remove(at: 0)
+//                            serverHistory.append(newItem)
+//                        }
+                    }
+                    if let message = message as? WSUpdateServerStatus {
+                        print("message: \(message)")
+                    }
+                }
+            } catch {
+                disconnect()
+                socketStatus = .error
+            }
+        }
+    }
+
+    func disconnect() {
+        socketStatus = .disconnected
+        webSocketConnectionTask?.cancel()
     }
 
     func fetchStats() {

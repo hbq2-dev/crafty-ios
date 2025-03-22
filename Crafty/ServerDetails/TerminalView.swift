@@ -23,7 +23,6 @@ struct TerminalView: View {
                     text:
                     .constant(viewModel.logsHtml)
                 )
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .font(.caption)
                 .foregroundColor(.teal)
                 .scrollIndicators(.hidden)

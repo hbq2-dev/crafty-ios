@@ -10,6 +10,7 @@ import Foundation
 enum AuthEndpoint {
     case apiIndex
     case getToken(model: APILoginRequest)
+    case getConfig
 }
 
 extension AuthEndpoint: EndPointType {
@@ -19,18 +20,27 @@ extension AuthEndpoint: EndPointType {
             ""
         case .getToken:
             "/auth/login"
+        case .getConfig:
+            "/assets/config/crafty.json"
         }
     }
 
     var url: URL? {
-        let baseUrl = "https://\(UserDefaults.standard.string(forKey: CraftyConstants.serverUrl) ?? "")/api/v2"
+        switch self {
+        case .getConfig:
+            let baseUrl = "https://spicyramen.dev"
 
-        return URL(string: "\(baseUrl)\(path)")
+            return URL(string: "\(baseUrl)\(path)")
+        case .apiIndex, .getToken:
+            let baseUrl = "https://\(UserDefaults.standard.string(forKey: CraftyConstants.serverUrl) ?? "")/api/v2"
+
+            return URL(string: "\(baseUrl)\(path)")
+        }
     }
 
     var method: HTTPMethods {
         switch self {
-        case .apiIndex:
+        case .apiIndex, .getConfig:
             .get
         case .getToken:
             .post
@@ -39,7 +49,7 @@ extension AuthEndpoint: EndPointType {
 
     var body: Encodable? {
         switch self {
-        case .apiIndex:
+        case .apiIndex, .getConfig:
             nil
         case let .getToken(model: model):
             model

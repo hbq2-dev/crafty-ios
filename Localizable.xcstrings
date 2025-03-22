@@ -108,7 +108,10 @@
     "CPU Usage: %@%%" : {
 
     },
-    "Crafty Controller Docs" : {
+    "Crafty Controller" : {
+
+    },
+    "Crafty Controller Documentation" : {
 
     },
     "Dashboard" : {
@@ -145,6 +148,9 @@
 
     },
     "Last Seen:" : {
+
+    },
+    "Legal" : {
 
     },
     "Links" : {
@@ -189,6 +195,9 @@
     "ok" : {
 
     },
+    "OK" : {
+
+    },
     "Online" : {
 
     },
@@ -211,10 +220,16 @@
         }
       }
     },
+    "Please do not report any issues with this app to the Crafty team as it is not supported or developed by them." : {
+
+    },
     "Privacy Policy" : {
 
     },
     "RAM" : {
+
+    },
+    "Report an Issue" : {
 
     },
     "Restart" : {
@@ -247,9 +262,6 @@
     "Servers" : {
 
     },
-    "Settings" : {
-
-    },
     "Source Code" : {
 
     },
@@ -271,8 +283,18 @@
     "Terminal" : {
 
     },
-    "This app does not collect any personal data and does not use any analytics service.\nThe only information sent is API data to your Crafty instance, and the only third party data provider is https://mc-heads.net/avatar to receive player head information." : {
+    "Terms of Service" : {
 
+    },
+    "This server uses API version %@, but the versions support by this app are: %@. Not all features may work as intented." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This server uses API version %1$@, but the versions support by this app are: %2$@. Not all features may work as intented."
+          }
+        }
+      }
     },
     "Time" : {
 
@@ -293,6 +315,9 @@
 
     },
     "Version: %@" : {
+
+    },
+    "Warning" : {
 
     },
     "Websocket Error" : {
