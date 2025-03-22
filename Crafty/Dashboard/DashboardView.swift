@@ -71,20 +71,19 @@ struct DashboardView: View {
                         .presentationBackground(.thinMaterial)
                 }
                 .modifier(CustomButtonStyle(isEnabled: true))
-
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        showSettings.toggle()
-                    }) {
-                        Label("Account", systemImage: "person.crop.circle").fontWeight(.thin)
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showSettings.toggle()
+                        }) {
+                            Label("Account", systemImage: "person.crop.circle").fontWeight(.thin)
+                        }
+                        .sheet(isPresented: $showSettings) {
+                            SettingsView()
+                                .presentationBackground(.thinMaterial)
+                        }
                     }
-                    .sheet(isPresented: $showSettings) {
-                        SettingsView()
-                            .presentationBackground(.thinMaterial)
-                    }
-                    Spacer()
-                }
+                })
             }
         }
 
