@@ -1,0 +1,355 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ / %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@ / %@ MHz" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@ MHz"
+          }
+        }
+      }
+    },
+    "%@ Used" : {
+
+    },
+    "%@:%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@:%2$@"
+          }
+        }
+      }
+    },
+    "%@%%" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld Cores" : {
+
+    },
+    "%lld Online / %lld Max" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Online / %2$lld Max"
+          }
+        }
+      }
+    },
+    "%lld Online / %lld Total" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Online / %2$lld Total"
+          }
+        }
+      }
+    },
+    "Account" : {
+
+    },
+    "Agree" : {
+
+    },
+    "Are you sure you want to delete this server? This action is not reversable. Please make sure you have a backup if necessary!" : {
+
+    },
+    "Are you sure you want to restart this server?" : {
+
+    },
+    "Are you sure you want to stop this server?" : {
+
+    },
+    "Backups" : {
+
+    },
+    "Ban" : {
+
+    },
+    "Bedrock" : {
+
+    },
+    "Build Server" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Close" : {
+
+    },
+    "Connect" : {
+
+    },
+    "Connected" : {
+
+    },
+    "CPU" : {
+
+    },
+    "CPU Usage: %@%%" : {
+
+    },
+    "CPU: %@%%" : {
+
+    },
+    "Crafty Controller" : {
+
+    },
+    "Crafty Controller Documentation" : {
+
+    },
+    "Dashboard" : {
+
+    },
+    "De-OP" : {
+
+    },
+    "Default Backup" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete Server" : {
+
+    },
+    "Disk" : {
+
+    },
+    "e.g. myserver.mc.com" : {
+
+    },
+    "Enter a command - the forward slash is already included" : {
+
+    },
+    "GB" : {
+
+    },
+    "Graphs" : {
+
+    },
+    "Java" : {
+
+    },
+    "Kick" : {
+
+    },
+    "Last Seen:" : {
+
+    },
+    "Legal" : {
+
+    },
+    "Links" : {
+
+    },
+    "Location: %@" : {
+
+    },
+    "Login" : {
+
+    },
+    "Logout" : {
+
+    },
+    "Max Backups: %lld" : {
+
+    },
+    "Max Memory" : {
+
+    },
+    "Memory" : {
+
+    },
+    "Memory: %@" : {
+
+    },
+    "Memory: %lld%%" : {
+
+    },
+    "Metric" : {
+
+    },
+    "Min Memory" : {
+
+    },
+    "New Server" : {
+
+    },
+    "No players found or server is offline." : {
+
+    },
+    "Offline" : {
+
+    },
+    "ok" : {
+
+    },
+    "OK" : {
+
+    },
+    "Online" : {
+
+    },
+    "Only HTTPS endpoints with a valid certificate are allowed" : {
+
+    },
+    "Op" : {
+
+    },
+    "Players" : {
+
+    },
+    "Players: %lld/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Players: %1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "Please do not report any issues with this app to the Crafty team as it is not supported or developed by them." : {
+
+    },
+    "Power Off" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "RAM" : {
+
+    },
+    "Report an Issue" : {
+
+    },
+    "Restart" : {
+
+    },
+    "Restart Now" : {
+
+    },
+    "Save and Test Connection" : {
+
+    },
+    "Select a server or create a new one" : {
+
+    },
+    "Send" : {
+
+    },
+    "Server Name" : {
+
+    },
+    "Server Port" : {
+
+    },
+    "Server Type" : {
+
+    },
+    "Server Url Host" : {
+
+    },
+    "Servers" : {
+
+    },
+    "Source Code" : {
+
+    },
+    "Start" : {
+
+    },
+    "Status: %@" : {
+
+    },
+    "Stop" : {
+
+    },
+    "Stop Now" : {
+
+    },
+    "Tabs" : {
+
+    },
+    "Terminal" : {
+
+    },
+    "Terms of Service" : {
+
+    },
+    "This server uses API version %@, but the versions support by this app are: %@. Not all features may work as intented." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This server uses API version %1$@, but the versions support by this app are: %2$@. Not all features may work as intented."
+          }
+        }
+      }
+    },
+    "Time" : {
+
+    },
+    "Total" : {
+
+    },
+    "Try Reconnecting" : {
+
+    },
+    "Type" : {
+
+    },
+    "Value" : {
+
+    },
+    "Version" : {
+
+    },
+    "Version: %@" : {
+
+    },
+    "Warning" : {
+
+    },
+    "Websocket Error" : {
+
+    },
+    "Websocket: %@" : {
+
+    },
+    "Websocket: Disconnected" : {
+
+    },
+    "World Size: %@" : {
+
+    }
+  },
+  "version" : "1.0"
+}
